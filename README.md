@@ -38,11 +38,11 @@ $ gfortran locate.for mapll.for mapxy.for -o locatefor
 
 To use `locate.for`, simply run the compiled `locatefor` and follow the prompts.
 
-For example, to use the `locatefor` docker image to convert northern hemisphere
-I,J coordinates to latitude,longitude coordinates:
+For example, to convert northern hemisphere I,J coordinates to
+latitude,longitude coordinates:
 
 ```
-$ ./locate/locatefor
+$ ./locatefor
  Enter the grid cell dimension:
   1. 12.5 Km
   2. 25.0 Km
