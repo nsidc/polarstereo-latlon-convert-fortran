@@ -1,8 +1,12 @@
 ![NSIDC logo](/images/NSIDC_logo_2018_poster-1.png)
 
-# Polar Stereographic geolcation, conversion, and lookup
+# NSIDC Polar Stereographic Projection lat/lon conversion: locate
 
-Scripts for working with NSIDC data in polar stereographic projections.
+FORTRAN program that transforms I,J coordinates of an SSM/I grid cell to
+latitude and longitude coordinates. This program provides the inverse functions
+as well. `LOCATE` interfaces to the revised forms of the subroutines, `MAPXY`
+and `MAPLL`.
+
 
 ## Level of Support
 
@@ -13,30 +17,64 @@ repository, you may fork the repository and submit a pull request.
 See the [LICENSE](LICENSE) for details on permissions and warranties. Please
 contact nsidc@nsidc.org for more information.
 
+
 ## Requirements
 
-Script requirements are provided in the README file within each subdirectory.
+`locate.for` requries [`gfortran`](https://gcc.gnu.org/wiki/GFortran).
 
 
 ## Installation
 
-Script installation instructions are provided in the README file within each subdirectory.
+Install `gfortran` and then compile the `locatefor` executable with the
+following command:
+
+```
+$ cd locate/
+$ gfortran locate.for mapll.for mapxy.for -o locatefor
+```
+
 
 ## Usage
 
-### locate
+To use `locate.for`, simply run the compiled `locatefor` and follow the prompts.
 
-The `locate` directory includes fortran code for converting between I,J
-coodinates of an SSM/I-SSMIS polar stereographic grid cell to latitude and longitude coordinates.
+For example, to use the `locatefor` docker image to convert northern hemisphere
+I,J coordinates to latitude,longitude coordinates:
+
+```
+$ ./locate/locatefor
+ Enter the grid cell dimension:
+  1. 12.5 Km
+  2. 25.0 Km
+1
+ Enter the hemisphere of interest:
+  1. North
+  2. South
+1
+ Enter one of the following transform functions:
+  1. Convert I,J to Latitude, Longitude
+  2. Convert Latitude, Longitude to I,J
+1
+ Enter the column number
+ the valid range is (1-608)
+200
+ Enter the row number
+ the valid range is (1-896)
+300
+   67.1696243       167.778168
+```
 
 ## License
 
-See [LICENSE](LICENSE), unless otherwise stated in the README file with each subdirectory.
+See [LICENSE](LICENSE).
+
 
 ## Code of Conduct
 
 See [Code of Conduct](CODE_OF_CONDUCT.md).
 
+
 ## Credit
 
-Credit is provided in the README file within each subdirectory.
+This software was developed by the NASA National Snow and Ice Data Center
+Distributed Active Archive Center.
